@@ -11,7 +11,8 @@ public class PluginLoader {
     public static Logger log;
 
     /**
-     * 启动plugin loader
+     * start up
+     * @param c plugin class
      */
     public static void run(Class<? extends JavaPlugin> c){
         JavaPlugin plugin = JavaPlugin.getPlugin(c);

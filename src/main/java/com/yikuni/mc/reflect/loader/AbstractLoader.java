@@ -69,6 +69,7 @@ public abstract class AbstractLoader {
      * 增加要装载的类
      * @param c 需要装载的类
      * @return true: 由这个loader装载; false: 这个loader无法装载
+     * @throws ReflectiveOperationException 反射异常
      */
     protected boolean add(Class<?> c) throws ReflectiveOperationException {
          Annotation annotation = c.getAnnotation(typeAnnotation);
