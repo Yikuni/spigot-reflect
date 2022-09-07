@@ -8,15 +8,9 @@ A reflect frame that helps to simplize the development of spigot. The feature in
 ## Quick Start
 ### 1. add maven dependency in pom.xml
 ```xml
-<!--add in repositories  -->
-<repository>
-    <id>Yikuni repo</id>
-    <url>https://maven.pkg.github.com/Yikuni/maven-repo</url>
-</repository>
-
 <!--add in dependency  -->
 <dependency>
-    <groupId>com.yikuni.mc</groupId>
+    <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
     <version>1.1.0</version>
 </dependency>
