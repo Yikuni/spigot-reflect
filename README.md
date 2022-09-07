@@ -10,8 +10,8 @@ A reflect frame that helps to simplize the development of spigot. The feature in
 ```xml
 <!--add in repositories  -->
 <repository>
-    <id>yikuni-repo</id>
-    <url>https://raw.github.com/yikuni/maven-repo/master/</url>
+    <id>Yikuni repo</id>
+    <url>https://maven.pkg.github.com/Yikuni/maven-repo</url>
 </repository>
 
 <!--add in dependency  -->
