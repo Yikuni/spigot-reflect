@@ -9,8 +9,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 
 public class MenuFacade implements Listener {
     private static Menu head;
-    public static void open(Player player, String name){
-        if (head != null) head.solveOpen(name, player);
+    public static void open(Player player, String name, Object... args){
+        if (head != null) head.solveOpen(name, player, args);
     }
 
     public static void add(Menu menu){
