@@ -27,16 +27,16 @@ public abstract class Menu {
 
 
     public abstract void click(@NotNull InventoryClickEvent event);
-    public abstract void open(@NotNull Player player, @NotNull Inventory inventory);
+    public abstract void open(@NotNull Player player, @NotNull Inventory inventory, Object... args);
 
-    public void solveOpen(String name, Player player){
+    public void solveOpen(String name, Player player, Object... args){
         if (this.name.equalsIgnoreCase(name)){
             Inventory inventory = Bukkit.createInventory(player, size, name);
             inventoryList.add(inventory);
-            open(player, inventory);
+            open(player, inventory, args);
             player.openInventory(inventory);
         }
-        else if (next != null) next.solveOpen(name, player);
+        else if (next != null) next.solveOpen(name, player, args);
         else noMenuTip(name, player);
     }
 
