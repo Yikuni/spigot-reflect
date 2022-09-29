@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationContext {
-    public static final Map<Class<?>, Object> CONTEXT = new HashMap<>();
+    private static final Map<Class<?>, Object> CONTEXT = new HashMap<>();
 
     @Nullable
     public static Object getContext(@NotNull Class<?> c){

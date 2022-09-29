@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 public class MenuLoader extends CheckLoader{
     @Override
-    void loadClass(Class<?> c) throws ReflectiveOperationException {
+    Object loadClass(Class<?> c) throws ReflectiveOperationException {
         if (checkClass(c, Menu.class)) throw new ReflectiveOperationException("Failed to load class: " + c.getName() + " : Please implement " + Menu.class.getName());
         YikuniMenu annotation = c.getAnnotation(YikuniMenu.class);
         Menu menu = (Menu) c.newInstance();
@@ -17,6 +17,7 @@ public class MenuLoader extends CheckLoader{
         menu.setSize(annotation.size());
         MenuFacade.add(menu);
         PluginLoader.log.info("Loaded Menu: " + c.getName());
+        return menu;
     }
 
     @Override

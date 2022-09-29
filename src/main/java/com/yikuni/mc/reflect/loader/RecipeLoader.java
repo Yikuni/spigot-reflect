@@ -18,8 +18,9 @@ public class RecipeLoader extends AbstractLoader{
     private StringReplaceStrategy strategy = new NoneStrategy();
 
     @Override
-    void loadClass(Class<?> c) {
+    AbstractLoader loadClass(Class<?> c) {
         // doNothing
+        return null;
     }
 
     @Override

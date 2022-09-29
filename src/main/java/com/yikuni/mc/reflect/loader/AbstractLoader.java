@@ -1,5 +1,6 @@
 package com.yikuni.mc.reflect.loader;
 
+import com.yikuni.mc.reflect.context.ApplicationContext;
 import com.yikuni.mc.reflect.key.strategy.StringReplaceStrategy;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,7 +41,10 @@ public abstract class AbstractLoader {
     public void loadClass(){
         classSet.forEach(c ->{
             try {
-                loadClass(c);
+                Object o = loadClass(c);
+                if(o != null){
+                    ApplicationContext.addContext(o.getClass(), o);
+                }
                 if (methodAnnotation != null){
                     // 如果需要loadMethod
                     Method[] methods = c.getMethods();
@@ -60,7 +64,7 @@ public abstract class AbstractLoader {
         }
     }
 
-    abstract void loadClass(Class<?> c) throws ReflectiveOperationException;
+    abstract Object loadClass(Class<?> c) throws ReflectiveOperationException;
 
 
     protected abstract void loadMethod(Method method);

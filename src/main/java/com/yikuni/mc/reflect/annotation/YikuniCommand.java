@@ -15,6 +15,7 @@ public @interface YikuniCommand {
     @NotNull
     String value(); // 指令名
 
+    @Deprecated
     String[] alias() default {};   // 别名
 
     String description() default "The command have no description";

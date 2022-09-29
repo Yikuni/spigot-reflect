@@ -8,16 +8,17 @@ import java.lang.reflect.Method;
 
 public class EventLoader extends AbstractLoader{
     @Override
-    void loadClass(Class<?> c) throws ReflectiveOperationException {
+    Object loadClass(Class<?> c) throws ReflectiveOperationException {
         if (!checkClass(c)) throw new ReflectiveOperationException( "Failed to load class " + c.getName() + " : Please Implement Interface org.bukkit.event.Listener");
         try {
             Object instance = c.newInstance();
             plugin.getServer().getPluginManager().registerEvents((Listener) instance, plugin);
-            ApplicationContext.addContext(c, instance);
             PluginLoader.log.info("Loaded Event Listener: " + c.getName());
+            return instance;
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override
