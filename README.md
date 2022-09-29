@@ -12,7 +12,7 @@ A reflect frame that helps to simplize the development of spigot. The feature in
 <dependency>
     <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 ### 2. Run PluginLoader in Main Plugin Class
@@ -120,8 +120,9 @@ public class DemoMenu extends Menu{
      * let player open menu
      * @param player    target Player
      * @param inventory menu we created
+     * @param args some arg here
      */
-    public void open(Player player, Inventory inventory){
+    public void open(Player player, Inventory inventory, Object... args){
         ItemStack helloWorld = new ItemStack(Material.Diamond);
         inventory.setItem(4, helloWorld);
     }
