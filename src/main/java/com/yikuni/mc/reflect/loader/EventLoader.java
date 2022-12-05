@@ -13,7 +13,7 @@ public class EventLoader extends AbstractLoader{
         try {
             Object instance = c.newInstance();
             plugin.getServer().getPluginManager().registerEvents((Listener) instance, plugin);
-            PluginLoader.log.info("Loaded Event Listener: " + c.getName());
+            info("Loaded Event Listener: " + c.getName());
             return instance;
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class MenuLoader extends CheckLoader{
         menu.setName(annotation.value());
         menu.setSize(annotation.size());
         MenuFacade.add(menu);
-        PluginLoader.log.info("Loaded Menu: " + c.getName());
+        info("Loaded Menu: " + c.getName());
         return menu;
     }
 

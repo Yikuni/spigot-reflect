@@ -42,7 +42,7 @@ public class RecipeLoader extends AbstractLoader{
             NamespacedKey key = new NamespacedKey(plugin, name);
             Object invoke = method.invoke(instance, key);
             Bukkit.addRecipe((Recipe) invoke);
-            PluginLoader.log.info("Loaded Recipe: " + name);
+            info("Loaded Recipe: " + name);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

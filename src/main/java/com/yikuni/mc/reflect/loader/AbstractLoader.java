@@ -1,5 +1,6 @@
 package com.yikuni.mc.reflect.loader;
 
+import com.yikuni.mc.reflect.PluginLoader;
 import com.yikuni.mc.reflect.context.ApplicationContext;
 import com.yikuni.mc.reflect.key.strategy.StringReplaceStrategy;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -120,5 +121,9 @@ public abstract class AbstractLoader {
 
     public void setPlugin(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    protected void info(String content){
+        PluginLoader.info(content);
     }
 }

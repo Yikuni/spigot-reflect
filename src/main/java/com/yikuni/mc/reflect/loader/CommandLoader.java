@@ -27,7 +27,7 @@ public class CommandLoader extends CheckLoader{
         command.setExecutor((CommandExecutor) o);
         if (TabCompleter.class.isAssignableFrom(c)) command.setTabCompleter((TabCompleter) o);
 
-        PluginLoader.log.info("Loaded Command " + annotation.value());
+        info("Loaded Command " + annotation.value());
         return o;
     }
 
