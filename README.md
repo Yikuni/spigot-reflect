@@ -1,4 +1,9 @@
+
+
 # Spigot Reflect
+
+Edit by Yikuni\<2058187089@qq.com\>
+
 ---
 
 A reflect frame that helps to simplize the development of spigot. The feature includes Command, Event Listener, Recipe and Menu. With annotation, it makes code more elegent and let developer focus on the game function.
@@ -6,16 +11,20 @@ A reflect frame that helps to simplize the development of spigot. The feature in
 ---
 
 ## Quick Start
+
 ### 1. add maven dependency in pom.xml
+
 ```xml
 <!--add in dependency  -->
 <dependency>
     <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.5</version>
 </dependency>
 ```
+
 ### 2. Run PluginLoader in Main Plugin Class
+
 ```java
 public final class DemoPlugin extends JavaPlugin{
 	...
@@ -28,7 +37,9 @@ public final class DemoPlugin extends JavaPlugin{
     }
 }
 ```
+
 ### 3. Write a simple Event
+
 > its advised to use kotlin for faster development
 
 ```kotlin
@@ -42,6 +53,7 @@ class PlayerLoginOutEvent: Listener{
     }
 }
 ```
+
 > you can also use java in the same way
 
 ```java
@@ -55,7 +67,9 @@ public class PlayerLoginOutevent implements Listener{
     }
 }
 ```
+
 ## YikuniEvent
+
 > Used in Listener, simply add annotation @YikuniEvent, you dont need to do anything else in DemoPlugin.class
 
 ```java
@@ -69,7 +83,9 @@ public class PlayerLoginOutevent implements Listener{
     }
 }
 ```
+
 ## YikuniCommand
+
 > Used to setup command, its need to add command name in plugin.yml, but its ok to set permission, usage and so on in the annotation.
 
 ```java
@@ -78,11 +94,14 @@ public class DemoCommand implements CommandExecutor{
     ...
 }
 ```
+
 ```yaml
 commands:
   grand:
 ```
+
 ## YikuniRecipe
+
 > add annotation YikuniRecipe on the class and recipe methods
 
 ```java
@@ -106,7 +125,9 @@ public class TestRecipe {
 }
 
 ```
+
 ## YikuniMenu
+
 > Sometimes we need to provide GUI rather than let player use plain command, so we choose to use inventory for GUI. It is complex to setup a menu, but spigot-reflect made it easy. Lets see the demo.
 
 ```java
@@ -137,8 +158,10 @@ public class DemoMenu extends Menu{
     }
 }
 ```
-The menu has been setup successfully, and you can call Method MenuFacade.open(player, menuName) to let player open the menu.
+
+The menu has been setup successfully, then you can call Method MenuFacade.open(player, menuName, args...) to let player open the menu.
 Like when player performed command /hellomenu
+
 ```java
 @YikuniCommand("hellomenu")
 public class HelloMenuCommand implements CommandExecutor{
@@ -149,3 +172,38 @@ public class HelloMenuCommand implements CommandExecutor{
         return true;
 }
 ```
+
+## Banner
+
+spigot-reflect support printing a banner on plugin enable.
+
+It's deadly easy to add a banner. Just create banner.txt under resource dir and copy your banner into it.
+
+![image-20221207152521095](https://www.yikuni.com/image/docsImage/banner1.png)
+
+banner.txt
+
+``` txt
+   ___                      _               _      _  _          
+  | _ \    ___    _ __     (_)      _ _    (_)    | || |  __ _   
+  |   /   / -_)  | '  \    | |     | '_|   | |     \_, | / _` |  
+  |_|_\   \___|  |_|_|_|  _|_|_   _|_|_   _|_|_   _|__/  \__,_|  
+_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_| """"|_|"""""| 
+"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
+
+```
+
+the result go like this:
+
+![image-20221207152521095](https://www.yikuni.com/image/docsImage/banner2.png)
+
+## Settings
+
+you are able to disable log of spigot-reflect and banner option.
+
+The first param is banner, second is log, third is debug mode.
+
+``` java
+PluginLoader.run(RemiriyaRaffle.class, new PluginLoader.Settings(false, false, false));
+```
+
