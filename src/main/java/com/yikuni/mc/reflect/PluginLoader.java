@@ -13,18 +13,29 @@ import java.util.logging.Logger;
 public class PluginLoader {
     public static Logger log;
     public static Settings loadSettings;
+    private static Boolean isMenuFacadeRegistered = false;
 
     public static class Settings {
-        public static final Settings DefaultSettings = new Settings(true, true);
+        public static final Settings DefaultSettings = new Settings(true, true, false);
         private boolean banner;
         private boolean log;
+        private boolean debug;
 
         public Settings() {
         }
 
-        public Settings(boolean banner, boolean log) {
+        public Settings(boolean banner, boolean log, boolean debug) {
             this.banner = banner;
             this.log = log;
+            this.debug = debug;
+        }
+
+        public boolean isDebug() {
+            return debug;
+        }
+
+        public void setDebug(boolean debug) {
+            this.debug = debug;
         }
 
         public boolean isBanner() {
@@ -54,21 +65,33 @@ public class PluginLoader {
     }
 
     public static void run(Class<? extends JavaPlugin> c, Settings settings) {
-        loadSettings = settings;
         JavaPlugin plugin = JavaPlugin.getPlugin(c);
         log = plugin.getLogger();
+        loadSettings = settings;
+        info("Spigot Reflect starting loading " + c.getSimpleName());
+        debug("Debug mode is on");
         if (settings.banner){
-            String banner = FileUtil.readFileToString(c.getResourceAsStream("banner"));
+            InputStream inputStream = c.getResourceAsStream("/banner.txt");
+            String banner = FileUtil.readFileToString(inputStream);
             if (banner != null){
-                System.out.println(banner);
+                log.info("\n" + banner);
+            }else {
+                debug("Failed to find banner.txt");
             }
         }
         new DefaultLoaderDirector(plugin).run();
-        Bukkit.getPluginManager().registerEvents(new MenuFacade(), plugin);
+        if (!isMenuFacadeRegistered) Bukkit.getPluginManager().registerEvents(new MenuFacade(), plugin);
+        info("Spigot Reflect loaded " + c.getSimpleName());
     }
 
     public static void info(String content){
         if (loadSettings.log){
+            log.info(content);
+        }
+    }
+
+    public static void debug(String content){
+        if (loadSettings.debug){
             log.info(content);
         }
     }

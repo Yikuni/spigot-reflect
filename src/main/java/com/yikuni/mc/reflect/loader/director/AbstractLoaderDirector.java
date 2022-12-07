@@ -1,5 +1,6 @@
 package com.yikuni.mc.reflect.loader.director;
 
+import com.yikuni.mc.reflect.PluginLoader;
 import com.yikuni.mc.reflect.loader.AbstractLoader;
 import com.yikuni.mc.reflect.util.YikuniReflectUtil;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +20,7 @@ public abstract class AbstractLoaderDirector {
 
     public void run(){
         Set<Class<?>> classes = YikuniReflectUtil.getClasses(plugin.getClass().getPackage().getName(), true);
+        PluginLoader.debug("Totally scanned classes : " + classes.size());
         classes.forEach(c-> loader.resolve(c));
         loader.loadClass();
     }

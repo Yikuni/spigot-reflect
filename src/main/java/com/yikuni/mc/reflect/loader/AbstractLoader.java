@@ -26,6 +26,7 @@ public abstract class AbstractLoader {
      * @param c 类
      */
     public final void resolve(Class<?> c){
+        PluginLoader.debug("Scanned class " + c.getSimpleName());
         try {
             if (add(c)) return;
             if (next != null){
@@ -40,6 +41,7 @@ public abstract class AbstractLoader {
      * 加载列表中的每个类中的每个方法
      */
     public void loadClass(){
+        PluginLoader.debug(this.getClass().getSimpleName() + " Totally loaded classes: " + classSet.size());
         classSet.forEach(c ->{
             try {
                 Object o = loadClass(c);
@@ -81,6 +83,7 @@ public abstract class AbstractLoader {
         if (annotation != null){
             // 如果是这个装载器负责的类, 则装载
             classSet.add(c);
+            PluginLoader.debug("Add class " + c.getSimpleName());
             return true;
         }else {
             return false;

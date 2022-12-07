@@ -1,6 +1,8 @@
 package com.yikuni.mc.reflect.util;
 
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -43,7 +45,8 @@ public class FileUtil {
         return null;
     }
 
-    public static String readFileToString(InputStream in){
+    public static String readFileToString(@Nullable InputStream in){
+        if (in == null) return null;
         BufferedInputStream bin = null;
         Charset charset = StandardCharsets.UTF_8;
         try {
@@ -51,7 +54,7 @@ public class FileUtil {
             byte[] bytes = new byte[1024];
             StringBuilder builder = new StringBuilder();
             while (bin.read(bytes, 0, bytes.length) != -1){
-                builder.append(Arrays.toString(bytes));
+                builder.append(new String(bytes, charset));
             }
             return builder.toString();
         } catch (IOException e) {
