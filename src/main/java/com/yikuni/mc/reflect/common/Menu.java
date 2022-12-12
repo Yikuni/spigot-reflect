@@ -2,6 +2,7 @@ package com.yikuni.mc.reflect.common;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -23,6 +24,28 @@ public abstract class Menu {
     public Menu(@NotNull String name, @NotNull Integer size) {
         this.name = name;
         this.size = size;
+    }
+
+    /**
+     * check if the current Inventory is a Menu
+     * @param inventory inventory to be checked
+     * @return  true if the inventory is Menu
+     */
+    public final boolean contains(@NotNull Inventory inventory){
+        if (inventoryList.contains(inventory)){
+            return true;
+        }else {
+            if (next == null) return false;
+            else return next.contains(inventory);
+        }
+    }
+
+    public final boolean isPlayerInteractWithMenu(@NotNull HumanEntity player){
+        for (Inventory it: inventoryList){
+            if (it.getHolder() == player) return true;
+        }
+        if (next != null) return next.isPlayerInteractWithMenu(player);
+        else return false;
     }
 
 

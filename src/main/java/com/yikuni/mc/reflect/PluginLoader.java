@@ -80,7 +80,10 @@ public class PluginLoader {
             }
         }
         new DefaultLoaderDirector(plugin).run();
-        if (!isMenuFacadeRegistered) Bukkit.getPluginManager().registerEvents(new MenuFacade(), plugin);
+        if (!isMenuFacadeRegistered) {
+            Bukkit.getPluginManager().registerEvents(new MenuFacade(), plugin);
+            isMenuFacadeRegistered = true;
+        }
         info("Spigot Reflect loaded " + c.getSimpleName());
     }
 
