@@ -23,5 +23,8 @@ public abstract class AbstractLoaderDirector {
         PluginLoader.debug("Totally scanned classes : " + classes.size());
         classes.forEach(c-> loader.resolve(c));
         loader.loadClass();
+        onLoaded();
     }
+
+    abstract void onLoaded();
 }

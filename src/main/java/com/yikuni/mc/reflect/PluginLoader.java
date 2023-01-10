@@ -1,9 +1,14 @@
 package com.yikuni.mc.reflect;
 
+import com.yikuni.mc.reflect.common.interceptor.DefaultInterceptorDispatcher;
+import com.yikuni.mc.reflect.common.interceptor.InterceptorDispatcher;
 import com.yikuni.mc.reflect.context.menu.MenuFacade;
 import com.yikuni.mc.reflect.loader.director.DefaultLoaderDirector;
 import com.yikuni.mc.reflect.util.FileUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -14,6 +19,7 @@ public class PluginLoader {
     public static Logger log;
     public static Settings loadSettings;
     private static Boolean isMenuFacadeRegistered = false;
+    public static InterceptorDispatcher interceptorDispatcher;
 
     public static class Settings {
         public static final Settings DefaultSettings = new Settings(true, true, false);
@@ -70,6 +76,7 @@ public class PluginLoader {
         loadSettings = settings;
         info("Spigot Reflect starting loading " + c.getSimpleName());
         debug("Debug mode is on");
+        registerInterceptorDispatcher(plugin);
         if (settings.banner){
             InputStream inputStream = c.getResourceAsStream("/banner.txt");
             String banner = FileUtil.readFileToString(inputStream);
@@ -96,6 +103,18 @@ public class PluginLoader {
     public static void debug(String content){
         if (loadSettings.debug){
             log.info(content);
+        }
+    }
+
+    public static void registerInterceptorDispatcher(JavaPlugin plugin){
+        RegisteredServiceProvider<InterceptorDispatcher> dispatcher = Bukkit.getServicesManager().getRegistration(InterceptorDispatcher.class);
+        if (dispatcher == null){
+            DefaultInterceptorDispatcher defaultInterceptorDispatcher = new DefaultInterceptorDispatcher();
+            interceptorDispatcher = defaultInterceptorDispatcher;
+            Bukkit.getServicesManager().register(InterceptorDispatcher.class, defaultInterceptorDispatcher, plugin, ServicePriority.Normal);
+            Bukkit.getPluginManager().registerEvents(defaultInterceptorDispatcher, plugin);
+        }else {
+            interceptorDispatcher = dispatcher.getProvider();
         }
     }
 }
