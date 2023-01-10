@@ -39,6 +39,7 @@ public class DefaultInterceptorDispatcher implements InterceptorDispatcher{
             System.arraycopy(s, 1, args, 0, s.length - 1);
             for (RegisteredInterceptor registeredInterceptor : interceptorList) {
                 if (registeredInterceptor.getInterceptor().onCommand(event.getPlayer(), args)){
+                    event.setCancelled(true);
                     break;
                 }
             }
