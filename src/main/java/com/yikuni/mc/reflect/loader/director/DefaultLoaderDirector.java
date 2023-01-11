@@ -8,13 +8,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class DefaultLoaderDirector extends AbstractLoaderDirector{
-    private final InterceptorLoader interceptorLoader = new InterceptorLoader();
+    private InterceptorLoader interceptorLoader;
     public DefaultLoaderDirector(JavaPlugin plugin) {
         super(plugin);
+
     }
 
     @Override
     void init() {
+        interceptorLoader = new InterceptorLoader();
         LoaderBuilder builder = new LoaderBuilder(plugin);
         loader = builder
                 .append(new EventLoader()).methodAnnotation(EventHandler.class).typeAnnotation(YikuniEvent.class)

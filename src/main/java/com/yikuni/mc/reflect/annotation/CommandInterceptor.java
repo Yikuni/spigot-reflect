@@ -13,5 +13,5 @@ public @interface CommandInterceptor {
     // Command to intercept
     String value();
     // priority, highest num execute first
-    int priority();
+    int priority() default 0;
 }

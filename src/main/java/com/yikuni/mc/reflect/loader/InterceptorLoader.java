@@ -26,6 +26,7 @@ public class InterceptorLoader extends AutoCheckLoader{
         Interceptor o = (Interceptor) c.newInstance();
         CommandInterceptor annotation = c.getAnnotation(CommandInterceptor.class);
         dispatcher.registerInterceptor(annotation.value(), o, annotation.priority());
+        info("Loaded interceptor " + c.getName());
         return o;
     }
 

@@ -7,7 +7,7 @@
 
 # IntelliJ
 out/
-
+src/test
 # Compiled class file
 *.class
 
