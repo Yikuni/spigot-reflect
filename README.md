@@ -11,20 +11,16 @@ A reflect frame that helps to simplize the development of spigot. The feature in
 ---
 
 ## Quick Start
-
 ### 1. add maven dependency in pom.xml
-
 ```xml
 <!--add in dependency  -->
 <dependency>
     <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
-    <version>1.1.5</version>
+    <version>1.2.0</version>
 </dependency>
 ```
-
 ### 2. Run PluginLoader in Main Plugin Class
-
 ```java
 public final class DemoPlugin extends JavaPlugin{
 	...
@@ -37,25 +33,7 @@ public final class DemoPlugin extends JavaPlugin{
     }
 }
 ```
-
-### 3. Write a simple Event
-
-> its advised to use kotlin for faster development
-
-```kotlin
-@YikuniEvent
-class PlayerLoginOutEvent: Listener{
-    private val vipService = VipService
-    @EventHandler
-    fun playerLogin(event: PlayerLoginEvent){
-        // for example, setup vip
-        vipService.initVip(event.player)
-    }
-}
-```
-
-> you can also use java in the same way
-
+### 3. Write a simple Event Handler
 ```java
 @YikuniEvent
 public class PlayerLoginOutevent implements Listener{
@@ -67,10 +45,8 @@ public class PlayerLoginOutevent implements Listener{
     }
 }
 ```
-
 ## YikuniEvent
-
-> Used in Listener, simply add annotation @YikuniEvent, you dont need to do anything else in DemoPlugin.class
+> Used in Listener, simply add annotation @YikuniEvent
 
 ```java
 @YikuniEvent
@@ -83,9 +59,7 @@ public class PlayerLoginOutevent implements Listener{
     }
 }
 ```
-
 ## YikuniCommand
-
 > Used to setup command, its need to add command name in plugin.yml, but its ok to set permission, usage and so on in the annotation.
 
 ```java
@@ -94,14 +68,11 @@ public class DemoCommand implements CommandExecutor{
     ...
 }
 ```
-
 ```yaml
 commands:
   grand:
 ```
-
 ## YikuniRecipe
-
 > add annotation YikuniRecipe on the class and recipe methods
 
 ```java
@@ -125,10 +96,8 @@ public class TestRecipe {
 }
 
 ```
-
 ## YikuniMenu
-
-> Sometimes we need to provide GUI rather than let player use plain command, so we choose to use inventory for GUI. It is complex to setup a menu, but spigot-reflect made it easy. Lets see the demo.
+> Sometimes we need to provide GUI rather than let player use plain command, so we choose to use inventory for GUI. It is complex to setup a menu, but spigot-reflect made it easy.
 
 ```java
 import com.yikuni.mc.reflect.annotation.YikuniMenu
@@ -158,8 +127,7 @@ public class DemoMenu extends Menu{
     }
 }
 ```
-
-The menu has been setup successfully, then you can call Method MenuFacade.open(player, menuName, args...) to let player open the menu.
+The menu has been setup successfully, then you can call Method <mark>MenuFacade.open(player, menuName, args...)</mark> to let player open the menu.
 Like when player performed command /hellomenu
 
 ```java
@@ -170,6 +138,21 @@ public class HelloMenuCommand implements CommandExecutor{
         	MenuFacade.open(player, "hello Menu");
         }
         return true;
+}
+```
+
+## Command Interceptor
+
+sometimes you need to ban certain command, like op shouldn't be able to ban owner, then what you need is an interceptor
+
+```java
+@CommandInterceptor(value = "ban", priority = 1)
+public class BanInterceptor implements Interceptor{
+    // return true if the command should be blocked
+    @Override
+    public boolean onCommand(Player player, String[] args){
+        return player.isOp() && args[0].equals("yikuni")
+    }
 }
 ```
 
