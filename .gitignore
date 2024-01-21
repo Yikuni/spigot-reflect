@@ -2,6 +2,7 @@
 .idea/
 
 *.iml
+spigot-reflect.iml
 *.ipr
 *.iws
 
