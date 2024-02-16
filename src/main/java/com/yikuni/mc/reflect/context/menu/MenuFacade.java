@@ -52,7 +52,7 @@ public class MenuFacade implements Listener {
         if (head != null) head.close(event);
     }
 
-    public static void alert(@NotNull Player player, @NotNull Callback callback){
+    public static void alert(@NotNull Player player, @NotNull Runnable callback){
         AlertMenu.callbackMap.put(player, callback);
         MenuFacade.open(player, "确认菜单");
     }

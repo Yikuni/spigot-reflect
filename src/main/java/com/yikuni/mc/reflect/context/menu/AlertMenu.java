@@ -19,17 +19,17 @@ public class AlertMenu extends Menu {
         setName("确认菜单");
     }
 
-    protected static final Map<Player, Callback> callbackMap = new HashMap<>();
+    protected static final Map<Player, Runnable> callbackMap = new HashMap<>();
 
     @Override
     public void click(@NotNull InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         if (event.getSlot() == 2){
             player.closeInventory();
-            callbackMap.get(player).callback();
+            callbackMap.get(player).run();
         } else if (event.getSlot() == 6) {
             player.closeInventory();
-            callbackMap.get(player).callback();
+            callbackMap.get(player).run();
         }
     }
 
