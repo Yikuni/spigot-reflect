@@ -1,6 +1,5 @@
 package com.yikuni.mc.reflect.annotation;
 
-import org.bukkit.event.EventHandler;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

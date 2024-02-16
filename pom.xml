@@ -18,7 +18,7 @@
     <developers>
         <developer>
             <name>Yikuni</name>
-            <email>2058187089@qq.com</email>
+            <email>Yikuni@qq.com</email>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -35,8 +35,8 @@
     <url>https://github.com/Yikuni/spigot-reflect</url>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <github.global.server>github</github.global.server>
     </properties>
     <repositories>
@@ -129,7 +129,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -140,11 +140,6 @@
 
     </dependencies>
     <distributionManagement>
-<!--        <snapshotRepository>-->
-<!--            <id>sonatype-nexus-snapshots</id>-->
-<!--            <name>Sonatype Nexus Snapshots</name>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--        </snapshotRepository>-->
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Nexus Release Repository</name>
