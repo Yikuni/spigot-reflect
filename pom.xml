@@ -18,7 +18,7 @@
     <developers>
         <developer>
             <name>Yikuni</name>
-            <email>2058187089@qq.com</email>
+            <email>Yikuni@qq.com</email>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -29,14 +29,14 @@
 
     <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
-    <version>1.2.2</version>
+    <version>1.21.7-20260208</version>
 
     <name>spigot-reflect</name>
     <url>https://github.com/Yikuni/spigot-reflect</url>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <github.global.server>github</github.global.server>
     </properties>
     <repositories>
@@ -47,10 +47,6 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
     </repositories>
 
@@ -94,27 +90,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- GPG -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-<!--            <plugin>-->
-<!--                <artifactId>maven-deploy-plugin</artifactId>-->
-<!--                <version>2.8.1</version>-->
-<!--                <configuration>-->
-<!--                    <altDeploymentRepository>internal.repo::default::file://D:/github/mvn-repo</altDeploymentRepository>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 
@@ -123,13 +98,13 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20.4-R0.1-SNAPSHOT</version>
+            <version>1.21.7-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -139,16 +114,5 @@
         </dependency>
 
     </dependencies>
-    <distributionManagement>
-<!--        <snapshotRepository>-->
-<!--            <id>sonatype-nexus-snapshots</id>-->
-<!--            <name>Sonatype Nexus Snapshots</name>-->
-<!--            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
-<!--        </snapshotRepository>-->
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+
 </project>
