@@ -29,7 +29,6 @@ public class AlertMenu extends Menu {
             callbackMap.get(player).run();
         } else if (event.getSlot() == 6) {
             player.closeInventory();
-            callbackMap.get(player).run();
         }
     }
 
