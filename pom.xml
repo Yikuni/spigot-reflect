@@ -27,7 +27,7 @@
     </developers>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.yikuni</groupId>
+    <groupId>com.github.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
     <version>1.21.7-20260215</version>
 

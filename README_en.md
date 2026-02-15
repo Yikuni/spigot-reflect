@@ -6,11 +6,12 @@ Edit by Yikuni\<2058187089@qq.com\>
 
 🌐 Language: [中文](README.md) | [English](README_en.md)
 
-一个帮助简化 Spigot 开发的反射框架。其功能包括命令、事件监听器、配方和菜单。通过注解，它使代码更加优雅，让开发者专注于游戏功能。
+A reflect frame that helps to simplize the development of spigot. The feature includes Command, Event Listener, Recipe and Menu. With annotation, it makes code more elegent and let developer focus on the game function.
+
 ---
 
 ## Quick Start
-### 1. 在 pom.xml 中添加 Maven 依赖
+### 1. add maven dependency in pom.xml
 ```xml
 <!--add in dependency  -->
 <dependency>
@@ -25,7 +26,7 @@ Edit by Yikuni\<2058187089@qq.com\>
     <url>https://jitpack.io</url>
 </repository>
 ```
-### 2. 在主插件类中运行 PluginLoader
+### 2. Run PluginLoader in Main Plugin Class
 ```java
 public final class DemoPlugin extends JavaPlugin{
 	...
@@ -38,21 +39,7 @@ public final class DemoPlugin extends JavaPlugin{
     }
 }
 ```
-### 3. 编写一个简单的事件处理器
-```java
-@YikuniEvent
-public class PlayerLoginOutevent implements Listener{
-	@EventHandler
-    public void playerLogin(PlayerJoinEvent event){
-        // for example, set join message
-    	event.setJoinMessage("Hello world!");
-        // ...
-    }
-}
-```
-## YikuniEvent
-> 新建事件监听时，只需添加注解 @YikuniEvent
-
+### 3. Write a simple Event Handler
 ```java
 @YikuniEvent
 public class PlayerLoginOutEvent implements Listener{
@@ -64,8 +51,22 @@ public class PlayerLoginOutEvent implements Listener{
     }
 }
 ```
+## YikuniEvent
+> Used in Listener, simply add annotation @YikuniEvent
+
+```java
+@YikuniEvent
+public class PlayerLoginOutevent implements Listener{
+	@EventHandler
+    public void playerLogin(PlayerJoinEvent event){
+        // for example, set join message
+    	event.setJoinMessage("Hello world!");
+        // ...
+    }
+}
+```
 ## YikuniCommand
-> 用于设置命令，需要在 plugin.yml 中添加命令名称，支持通过注解设置权限、用法等。
+> Used to setup command, its need to add command name in plugin.yml, but its ok to set permission, usage and so on in the annotation.
 
 ```java
 @YikuniCommand(value = "grand", description = "command related to grand", permission = "op", usage = "/command <GrandName> <PlayerName>")
@@ -78,7 +79,7 @@ commands:
   grand:
 ```
 ## YikuniRecipe
-> 在类和配方方法上添加注解 YikuniRecipe注解
+> add annotation YikuniRecipe on the class and recipe methods
 
 ```java
 @YikuniRecipe
@@ -102,7 +103,7 @@ public class TestRecipe {
 
 ```
 ## YikuniMenu
-> 有时我们需要提供 GUI，而不是让玩家使用普通命令，所以我们选择使用物品栏来实现 GUI。设置菜单比较复杂，但 spigot-reflect 使其变得简单。
+> Sometimes we need to provide GUI rather than let player use plain command, so we choose to use inventory for GUI. It is complex to setup a menu, but spigot-reflect made it easy.
 
 ```java
 import com.yikuni.mc.reflect.annotation.YikuniMenu
@@ -132,7 +133,8 @@ public class DemoMenu extends Menu{
     }
 }
 ```
-菜单已经成功设置，然后你可以调用方法 <mark>MenuFacade.open(player, menuName, args...)</mark> 让玩家打开菜单。就像玩家执行命令 /hellomenu 时：
+The menu has been setup successfully, then you can call Method <mark>MenuFacade.open(player, menuName, args...)</mark> to let player open the menu.
+Like when player performed command /hellomenu
 
 ```java
 @YikuniCommand("hellomenu")
@@ -147,7 +149,7 @@ public class HelloMenuCommand implements CommandExecutor{
 
 ## Command Interceptor
 
-有时你需要禁止某些命令，比如op不应该被ban，那么你需要一个拦截器。
+sometimes you need to ban certain command, like op shouldn't be able to ban owner, then what you need is an interceptor
 
 ```java
 @CommandInterceptor(value = "ban", priority = 1)
@@ -162,9 +164,9 @@ public class BanInterceptor implements Interceptor{
 
 ## Banner
 
-spigot-reflect 支持在插件启用时打印横幅。
+spigot-reflect support printing a banner on plugin enable.
 
-添加横幅非常简单，只需在资源目录下创建 banner.txt 并将横幅内容复制进去。
+It's deadly easy to add a banner. Just create banner.txt under resource dir and copy your banner into it.
 
 ![image-20221207152521095](https://www.yikuni.com/image/docsImage/banner1.png)
 
@@ -180,7 +182,6 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_| """"|_|"""""|
 
 ```
 
-结果如下所示：
+the result go like this:
 
 ![image-20221207152521095](https://www.yikuni.com/image/docsImage/banner2.png)
-
