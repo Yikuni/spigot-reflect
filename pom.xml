@@ -29,7 +29,7 @@
 
     <groupId>com.yikuni</groupId>
     <artifactId>spigot-reflect</artifactId>
-    <version>1.21.7-20260208</version>
+    <version>1.21.7-20260215</version>
 
     <name>spigot-reflect</name>
     <url>https://github.com/Yikuni/spigot-reflect</url>
